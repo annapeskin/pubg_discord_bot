@@ -44,7 +44,7 @@ def handle_message_invalid():
 
 def handle_message_stats(message):
     '''
-    The user can specify a players in-gane name and game mode, and the bot will provides stats about that player.
+    The user can specify a players in-game name and game mode, and the bot will provides stats about that player.
     Usage is: !stats player_name <solo/duo/squad>.
     @return: some useful stats about the player name for a specific game mode
     @rtype: str

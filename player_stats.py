@@ -43,6 +43,12 @@ class PUBGPlayerStatistics(Statistics):
                 return
 
             all_player_data = json.loads(pubgtracker_page.text)
+
+            # Request returns 200, then informs us there is an error.. thanks
+            if 'error' in all_player_data:
+                self.get_request_failed = 'Pubg Api returned an error: %s' % all_player_data['error']
+                return
+
             all_stats = all_player_data['Stats']
             important_stats = [s for s in all_stats if s['Season'] == all_player_data['defaultSeason'] and
                                                        s['Region'] == 'na' and
