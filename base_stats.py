@@ -11,11 +11,11 @@ class Statistics:
         self.get_request_failed = None
 
     def __str__(self):
-        if not self.headers or not self.list_of_stats:
-            return self.default_str
-
         if self.get_request_failed:
             return self.get_request_failed
+
+        if not self.headers or not self.list_of_stats:
+            return self.default_str
 
         self.list_of_stats = sorted(self.list_of_stats, key=(itemgetter(0)))  # TODO: improve this
         return '```\n%s\n%s\n```' % (self.title, tabulate(self.list_of_stats, headers=self.headers))
