@@ -2,6 +2,9 @@ from tabulate import tabulate
 from operator import itemgetter
 
 class Statistics:
+    '''
+    Base class for a printable block of statistics.
+    '''
 
     def __init__(self, title, default_str, headers=None):
         self.title = '---------===[ %s ]===---------' % title

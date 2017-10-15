@@ -14,5 +14,6 @@ pip-selfcheck.json
 
 # local
 private_constants.py
+pubg
 .vscode
 __pycache__

@@ -1,7 +1,7 @@
 import json
 import requests
 from ratelimit import *
-
+from util import dev_print
 from private_constants import API_KEY
 
 LABELS_TO_REPORT_TO_USER = ['Wins',
@@ -24,8 +24,11 @@ DEFAULT_PLAYER_STAT_STR = 'Invalid syntax, try: !stats player_name <solo/duo/squ
 from base_stats import Statistics
 
 class PUBGPlayerStatistics(Statistics):
+    '''
+    Provides printable block of statistics on a given player of PUBG.
+    '''
     def __init__(self, player_name, game_mode):
-
+        dev_print('init(): PUBGPlayerStatistics created with %s and %s.' % (player_name, game_mode))
         self.player_name = player_name
         self.game_mode = game_mode
 

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from ratelimit import *
-
+from util import dev_print
 import re
 from base_stats import Statistics
 
@@ -31,11 +31,24 @@ DEFAULT_GUN_STAT_STR = '```\nAVALIABLE GUNS:\n------------------------------\n%s
 
 
 class PUBGGunStatistics(Statistics):
+    '''
+    Provides printable block of statistics on a given gun, assuming it is in OFFICIAL_GUN_NAMES.
+    '''
+    
     def __init__(self, gun_name):
         self.gun_name = self.get_official_gun_name(gun_name)
         super(PUBGGunStatistics, self).__init__(self.gun_name.upper(), default_str=DEFAULT_GUN_STAT_STR, headers=['Stat', 'Value'])
 
     def get_official_gun_name(self, gun_name):
+        '''
+        Interprets input and returns an official name if it can recognize a gun name in the input.
+        @argtype: str
+        @return: official gun name from OFFICIAL_GUN_NAMES
+        @rtype: str
+        @raise: LookupError
+        '''
+        
+        dev_print('gun_stats.py, get_official_gun_name(): gun_name: %s' % gun_name)
 
         if gun_name == 'scarl':
             return 'SCAR-L'
@@ -43,14 +56,21 @@ class PUBGGunStatistics(Statistics):
         if 'kar' in gun_name:
             return 'Karabiner 98 Kurz'
 
-        for gun in OFFICAL_GUN_NAMES:
-            if gun_name in gun.lower():
-                return gun
+        # TODO: show user all gun names that match the input if there is more than one
+
+        for official_gun_name in OFFICAL_GUN_NAMES:
+            if gun_name in official_gun_name.lower():
+                return official_gun_name
 
         raise LookupError('Invalid gun name passed: %s' % gun_name)
 
     @rate_limited(2)
     def get_stats(self):
+        '''
+        Queries the Pubg Gamepedia for stats on the gun associated with this instance.
+        Updates the instance with this information but does not return anything.
+        Use __str__() to see changes.
+        '''
         try:
             url = PUBG_GAMEPEDIA % self.gun_name.replace(' ', '_')
             gamepedia_page = requests.get(url)
