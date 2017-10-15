@@ -4,6 +4,7 @@ import asyncio
 from message_handler import MESSAGE_HANDLER_FUNCTIONS_ARGS, MESSAGE_HANDLER_FUNCTIONS_NO_ARGS, MESSAGE_HANDLER_FUNCTIONS_ALL
 from private_constants import BOT_TOKEN
 
+
 client = discord.Client()
 
 @client.event
