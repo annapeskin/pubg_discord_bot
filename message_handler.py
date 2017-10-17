@@ -48,7 +48,13 @@ def handle_message_invalid():
     '''
     return 'I don\'t understand your accent. Try !help'
 
-def handle_message_crate_time():
+def handle_message_crate():
+    '''
+    Output time until next crate reset. The crate currently resets at 1AM PST MONDAY.
+    @return: Time until next crate.
+    @rtype: str
+    '''
+
     # Get current UTC time (UTC is common for world).
     current_utc_time = datetime.datetime.utcnow()
 
@@ -89,7 +95,8 @@ def handle_message_stats(message):
 
 MESSAGE_HANDLER_FUNCTIONS_NO_ARGS = {'!help': handle_message_help,
                                      '!debug': handle_message_debug,
-                                     '!invalid': handle_message_invalid}
+                                     '!invalid': handle_message_invalid,
+                                     '!crate': handle_message_crate}
 
 MESSAGE_HANDLER_FUNCTIONS_ARGS = {'!gun': handle_message_gun,
                                   '!stats': handle_message_stats}
