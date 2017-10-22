@@ -58,18 +58,15 @@ def handle_message_crate():
     # Get current UTC time (UTC is common for world).
     current_utc_time = datetime.datetime.utcnow()
 
-    # Turn UTC time to correct time zone (-7).
-    current_timezone_time = current_utc_time + datetime.timedelta(hours=-7)
-    
-    # Find the difference in the corrected time and Sunday at 6PM.
-    next_crate_time = current_timezone_time.replace(hour=18, minute=0, second=0)
-    next_crate_time = next_crate_time + datetime.timedelta(6 - current_timezone_time.weekday())
+    # Find the difference in the corrected time and Monday at 1AM UTC.
+    next_crate_time = current_utc_time.replace(hour=1, minute=0, second=0)
+    next_crate_time = next_crate_time + datetime.timedelta(0 - current_utc_time.weekday())
 
     # If the value of this outcome is negative, then add 7 days.
-    if((next_crate_time - current_timezone_time) < datetime.timedelta(0)):
+    if((next_crate_time - current_utc_time) < datetime.timedelta(0)):
         next_crate_time = next_crate_time + datetime.timedelta(days=7)
 
-    return '```The time until the crate reset is: %s```' % (next_crate_time - current_timezone_time)
+    return '```The time until the crate reset is: %s```' % (next_crate_time - current_utc_time)
 
 def handle_message_stats(message):
     '''
