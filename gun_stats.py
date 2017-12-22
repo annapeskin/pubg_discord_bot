@@ -15,7 +15,7 @@ PUBG_GAMEPEDIA = r'https://pubg.gamepedia.com/%s'
 
 # TODO: CACHE
 
-OFFICAL_GUN_NAMES = ['AKM', 'AWM', 'AUG A3',
+OFFICAL_GUN_NAMES = ['AKM', 'AUG A3', 'AWM',
                      'Crossbow',
                      'DP-28',
                      'Groza',
@@ -23,7 +23,7 @@ OFFICAL_GUN_NAMES = ['AKM', 'AWM', 'AUG A3',
                      'M16A4', 'M24', 'M249', 'M416', 'Micro UZI', 'Mini 14', 'Mk14 EBR',
                      'P18C', 'P1911', 'P92',
                      'R1895', 'R45',
-                     'Sawed-off', 'S12K', 'S1897', 'S686', 'SCAR-L', 'SKS',
+                     'S12K', 'S1897', 'S686', 'Sawed-off', 'SCAR-L', 'SKS',
                      'Tommy Gun',
                      'UMP9',
                      'Vector', 'VSS Vintorez',
