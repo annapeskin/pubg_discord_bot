@@ -15,17 +15,19 @@ PUBG_GAMEPEDIA = r'https://pubg.gamepedia.com/%s'
 
 # TODO: CACHE
 
-OFFICAL_GUN_NAMES = ['AKM', 'AWM',
+OFFICAL_GUN_NAMES = ['AKM', 'AUG A3', 'AWM',
                      'Crossbow',
+                     'DP-28',
                      'Groza',
                      'Karabiner 98 Kurz',
                      'M16A4', 'M24', 'M249', 'M416', 'Micro UZI', 'Mini 14', 'Mk14 EBR',
                      'P18C', 'P1911', 'P92',
-                     'R1895',
-                     'S12K', 'S1897', 'S686', 'SCAR-L', 'SKS',
+                     'R1895', 'R45',
+                     'S12K', 'S1897', 'S686', 'Sawed-off', 'SCAR-L', 'SKS',
                      'Tommy Gun',
                      'UMP9',
-                     'Vector', 'VSS Vintorez']
+                     'Vector', 'VSS Vintorez',
+                     'Winchester Model 1894']
 
 DEFAULT_GUN_STAT_STR = '```\nAVALIABLE GUNS:\n------------------------------\n%s\n```' % ''.join([gun_name.ljust(20) for gun_name in OFFICAL_GUN_NAMES])
 
@@ -53,8 +55,14 @@ class PUBGGunStatistics(Statistics):
         if gun_name == 'scarl':
             return 'SCAR-L'
 
+        if 'aug' in gun_name:
+            return 'AUG A3'
+
         if 'kar' in gun_name:
             return 'Karabiner 98 Kurz'
+
+        if 'winchester' in gun_name:
+            return 'Winchester Model 1894'
 
         # TODO: show user all gun names that match the input if there is more than one
 
